@@ -20,6 +20,8 @@ def main():
     assert ENTRY.strip(), "entry must not be only whitespace"
     assert "\n" not in ENTRY and "\r" not in ENTRY, "entry must be one line"
     assert not ENTRY.endswith("\n"), "no trailing newline"
+    # One sentence only: exactly one sentence-ending period, at the end.
+    assert ENTRY.count(".") == 1 and ENTRY.endswith("."), "entry must be one sentence"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
